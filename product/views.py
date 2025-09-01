@@ -35,6 +35,9 @@ class ProductViewSet(ModelViewSet):
     #         return [AllowAny()]
     #     return [IsAdminUser()]
     
+    def get_queryset(self):
+        return Product.objects.prefetch_related('images').all()
+
     @swagger_auto_schema(
         operation_summary='Retrive a list of products'
     )
