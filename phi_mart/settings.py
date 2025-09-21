@@ -54,12 +54,22 @@ INSTALLED_APPS = [
     'users',
     "debug_toolbar",
     'django_filters',
+    # django-cors-headers
+    "corsheaders",
 ]
 
 INTERNAL_IPS = [
     # ...
     "127.0.0.1",
     # ...
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    
+    # "https://example.com",
+    # "https://sub.example.com",
+    # "http://127.0.0.1:9000",
 ]
 
 MIDDLEWARE = [
@@ -70,6 +80,9 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
 
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    "corsheaders.middleware.CorsMiddleware",# You will also need to add a middleware class to listen in on responses
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
