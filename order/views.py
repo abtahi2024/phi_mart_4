@@ -158,5 +158,5 @@ class HasOrderedProduct(APIView):
     permission_classes=[IsAuthenticated]
     def get(self,request,product_id):
         user=request.user
-        has_ordered=OrderItem.objects.filter(order__user=user,product_id=product_id)
+        has_ordered=OrderItem.objects.filter(order__user=user,product_id=product_id).exists()
         return Response({"hasOrder":has_ordered})
